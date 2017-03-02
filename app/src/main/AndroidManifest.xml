@@ -24,7 +24,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".AddEmployee" />
-        <activity android:name=".ViewEmployees"></activity>
+        <activity android:name=".ViewEmployees" />
+        <activity android:name=".AddEmployment" />
+        <activity android:name=".ViewEmployments"></activity>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ public class EmployeeDAO {
     private EmployeeDB dbh;
     private SQLiteDatabase db;
     private ArrayList<Employee> employees;
+    ArrayList<Employment> employments;
 
     public EmployeeDAO(Context context){
         dbh = new EmployeeDB(context);
@@ -40,6 +41,22 @@ public class EmployeeDAO {
         }
     }//end addEmployee
 
+    public Boolean addEmployment(String employee, String employer, String nature, Double earnings){
+        ContentValues values = new ContentValues();
+        values.put(EmploymentContract.COLUMN_NAME_EMPLOYEE, employee);
+        values.put(EmploymentContract.COLUMN_NAME_EMPLOYER, employer);
+        values.put(EmploymentContract.COLUMN_NAME_NATURE, nature);
+        values.put(EmploymentContract.COLUMN_NAME_EARNINGS, earnings);
+        long newRowId = db.insert(EmploymentContract.TABLE_NAME_EMPLOYMENT, null, values);
+        if (newRowId == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
     public List<Employee> getEmps(List<Employee> employees){
         Cursor cursor = db.query(EmployeeContract.table_name_employee, null, null, null, null, null, null);
         cursor.moveToFirst();
@@ -52,5 +69,28 @@ public class EmployeeDAO {
             cursor.moveToNext();
         }
         return employees;
+    }
+
+    public List<Employment> getEmployments(List<Employment> empts, String emp) {
+
+        String selection;
+        if (emp != null) {
+            selection = EmploymentContract.COLUMN_NAME_EMPLOYEE + " ='" + emp + "'";
+        } else {
+            selection = null;
+        }
+
+        Cursor cursor = db.query(EmploymentContract.TABLE_NAME_EMPLOYMENT, null,selection,null,null,null,null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            String employee = cursor.getString(EmploymentContract.COLUMN_INDEX_EMPLOYEE);
+            String employer = cursor.getString(EmploymentContract.COLUMN_INDEX_EMPLOYER);
+            String nature = cursor.getString(EmploymentContract.COLUMN_INDEX_NATURE);
+            Double earnings = cursor.getDouble(EmploymentContract.COLUMN_INDEX_EARNINGS);
+            empts.add(new Employment(employee, employer, nature, earnings));
+            cursor.moveToNext();
+        }
+        return empts;
     }
 }

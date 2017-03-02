@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,9 +26,9 @@ public class ViewEmployees extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_employees);
 
-        empDAO = new EmployeeDAO(this);
-        empDAO.open();
-        empDAO.addEmployee("Johnny", "Applessed", "123123");
+//        empDAO = new EmployeeDAO(this);
+//        empDAO.open();
+//        empDAO.addEmployee("Johnny", "Applessed", "123123");
     }
 
     @Override
@@ -39,8 +41,18 @@ public class ViewEmployees extends Activity {
         empList.clear();
         empDAO = new EmployeeDAO(this);
         empDAO.open();
-        //empDAO.getEmps(empList);
+        empDAO.getEmps(empList);
         adapter.notifyDataSetChanged();
+
+        empListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Employee employee = empList.get(position);
+                Intent intent = new Intent(getApplicationContext(), ViewEmployments.class);
+                intent.putExtra(EmployeeDB.EMP_KEY,employee.getNI());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

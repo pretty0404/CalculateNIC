@@ -51,6 +51,20 @@ public class MainActivity extends Activity {
                 startActivity(viewEmps);
             }
         });
+        addEmployment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addEmpt = new Intent(MainActivity.this, AddEmployment.class);
+                startActivity(addEmpt);
+            }
+        });
+//        viewEmployment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent viewEmpt = new Intent(MainActivity.this, ViewEmployments.class);
+//                startActivity(viewEmpt);
+//            }
+//        });
     }
 
 }

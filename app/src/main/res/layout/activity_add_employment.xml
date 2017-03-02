@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_employment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="testapp.example.com.calculatenic.AddEmployment">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_marginTop="15dp"
+        android:id="@+id/nature"
+        android:hint="Nature of Employment"
+        android:layout_below="@+id/employerfield"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/nature"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/earnings"
+        android:inputType="numberDecimal"
+        android:hint="Gross Weekly Earnings" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/employeenumber"
+        android:hint="Employee NI Number"
+        android:inputType="text"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_marginTop="11dp"
+        android:id="@+id/employerfield"
+        android:hint="Employer Name"
+        android:layout_below="@+id/employeenumber"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="ADD EMPLOYMENT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/addemptbtn"
+        android:background="@color/buttons"
+        android:layout_below="@+id/earnings"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
